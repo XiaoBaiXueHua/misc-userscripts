@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name		Redirect to Alternative Frontends
 // @namespace	https://sincerelyandyourstruly.neocities.org
-// @version		1.1
+// @version		1.1.1
 // @history		1.1 - added redirects for instagram n tiktok
 // @history		1.0 - reddit, imgur, and twt redirects
 // @description	Automatically redirect various socmed links to alternative front ends that DON'T make you log into them. Because fuck them, that's why. Including: Reddig to RedLib, Imgur to Rimgo, Twitter to Nitter
