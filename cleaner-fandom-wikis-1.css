@@ -1,0 +1,128 @@
+/* ==UserStyle==
+@name           cleaner fandom wiki
+@namespace      https://sincerelyandyourstruly.neocities.org
+@version        1.0.0
+@description    cleans up the fandom wiki pages by a lot. use in conjunction with https://greasyfork.org/users/797186
+@author         小白雪花
+==/UserStyle== */
+
+/* goes along with cleaner fandom wikis script: https://raw.githubusercontent.com/XiaoBaiXueHua/misc-userscripts/main/cleaner-fandom-wikis-2.js */
+@-moz-document domain(fandom.com) {
+
+	script,
+	iframe:not([src*="youtube"]),
+	#mixed-content-footer,
+	[href$='.js'],
+	.wds-global-footer,
+	#WikiaBarWrapper,
+	.wds-global-navigation__content-bar-left,
+	.global-navigation,
+	#global-explore-navigation,
+	.fandom-community-header__image,
+	.fandom-sticky-header,
+	.gpt-ad,
+	.ad-slot-placeholder,
+	.top-leaderboard,
+	.is-loading,
+	.page__right-rail,
+	.search-modal::before,
+	form[class^="SearchInput-module_form__"] .wds-icon,
+	.notifications-placeholder,
+	.top-ads-container,
+	.instant-suggestion,
+	.unified-search__result.marketplace,
+	#global-register-link,
+	.global-registration-buttons,
+	[async],
+	[sandbox] {
+		display: none !important;
+	}
+
+	.fandom-community-header {
+		display: block;
+	}
+
+	.main-container {
+		min-width: 70vw !important;
+		width: 100%;
+		max-width: 100% !important;
+		margin-left: 0px;
+	}
+
+	.search-modal {
+		position: absolute;
+		bottom: auto;
+		left: auto;
+	}
+
+	.search-modal__content {
+		width: 420px;
+		top: 20px;
+		right: -3px;
+		min-height: auto;
+		background-color: var(--theme-page-background-color--secondary);
+		border: 1px solid var(--theme-border-color);
+		animation: none;
+	}
+
+	form[class^="SearchInput-module_form__"] {
+		border-bottom: 2px solid var(--theme-border-color);
+		color: var(--theme-border-color);
+	}
+
+	form[class^="SearchInput-module_form__"] .wds-button {
+		--wds-primary-button-background-color: var(--theme-accent-color);
+		--wds-primary-button-background-color--hover: var(--theme-accent-color--hover);
+		--wds-primary-button-label-color: var(--theme-accent-label-color);
+	}
+
+	input[class^="SearchInput-module_input__"] {
+		color: var(--theme-page-text-color);
+		border-left: none;
+		padding: 0;
+	}
+
+	a[class^="SearchResults-module_seeAllResults"] {
+		color: var(--theme-link-color) !important;
+	}
+
+	.community-header-wrapper {
+		height: auto;
+		padding: 5px 15px;
+		position: sticky;
+		top: 0;
+		z-index: 99;
+		opacity: 0;
+		border-radius: 0 0 5px 5px;
+		background-color: var(--theme-page-background-color);
+		transition-duration: 0.3s;
+	}
+
+	.community-header-wrapper:hover {
+		opacity: 1;
+		transition: opacity 0.3s;
+	}
+
+	.community-header-wrapper a,
+	.community-header-wrapper svg {
+		color: var(--theme-page-text-color);
+		fill: var(--theme-page-text-color);
+	}
+
+	.community-header-wrapper a:hover,
+	.community-header-wrapper a:focus {
+		color: var(--theme-link-color--hover);
+	}
+
+	div.wiki-tools.wds-button-group {
+		position: absolute;
+		right: 1vw;
+	}
+
+	.page-counter {
+		display: flex;
+		gap: 0.5em;
+		align-items: baseline;
+		color: var(--theme-page-text-color);
+	}
+}
