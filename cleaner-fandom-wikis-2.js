@@ -9,6 +9,8 @@
 // @match http://*.fandom.com/*
 // @match https://*.fandom.com/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+// @downloadURL	https://raw.githubusercontent.com/XiaoBaiXueHua/misc-userscripts/main/cleaner-fandom-wikis-2.js
+// @updateURL	https://raw.githubusercontent.com/XiaoBaiXueHua/misc-userscripts/main/cleaner-fandom-wikis-2.js
 // @grant        none
 // @run-at       document-end
 // ==/UserScript==
