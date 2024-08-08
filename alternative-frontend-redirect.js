@@ -10,6 +10,8 @@
 // @match		https://imgur.com/**
 // @match		https://twitter.com/**
 // @match		https://x.com/**
+// @match		https://www.instagram.com/**
+// @match		https://www.tiktok.com/**
 // @icon		https://www.google.com/s2/favicons?sz=64&domain=catsarch.com
 // @downloadURL	https://raw.githubusercontent.com/XiaoBaiXueHua/misc-userscripts/main/alternative-frontend-redirect.js
 // @updateURL	https://raw.githubusercontent.com/XiaoBaiXueHua/misc-userscripts/main/alternative-frontend-redirect.js
