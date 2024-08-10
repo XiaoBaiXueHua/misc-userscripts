@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name		Redirect to Alternative Frontends
 // @namespace	https://sincerelyandyourstruly.neocities.org
-// @version		1.1.2
+// @version		1.1.3
 // @history		1.1 - added redirects for instagram n tiktok
 // @history		1.0 - reddit, imgur, and twt redirects
 // @description	Automatically redirect various socmed links to alternative front ends that DON'T make you log into them. Because fuck them, that's why. Including: Reddig to RedLib, Imgur to Rimgo, Twitter to Nitter
@@ -57,10 +57,9 @@
 			var com = s.substring(s.search(".com") + 7); // cuts off the redir bit to just the start of the username
 			com = com.substring(0, com.search("%")); // now cuts off the rest of the junk to just the username
 			newURL = `https://www.piokok.com/profile/${com}`;
+		} else {
+			newURL = newURL.replace(/instagram.com/i, "piokok.com/profile"); // the last option is currently an assumption that we Don't run into a login wall and are just sent to look at a profile
 		}
-		// else {
-		// 	newURL = newURL.replace(/instagram.com/i, "piokok.com/profile"); // no clear way to get pixwox url from instagram url when looking at anything other than just a profile so currently else is empty
-		// }
 	}
 
 	window.location = new URL(newURL);
