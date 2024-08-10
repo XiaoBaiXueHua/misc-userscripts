@@ -1,0 +1,110 @@
+/* ==UserStyle==
+@name           dashboard recolor tweaks
+@namespace      https://sincerelyandyourstruly.neocities.org
+@version        1.0.0
+@description    dashboard recolor tweaks For Me Specifically
+@author         Me
+==/UserStyle== */
+:root {
+  --recolor: black;
+}
+
+[data-xkit-themed=laaxrun] *,
+[data-xkit-themed=laaxrun] #quick-reblog,
+[data-xkit-themed=laaxrun] #quick-reblog button,
+[data-xkit-themed=laaxrun] .accesskit-visible-alt-text * {
+  --recolor: white;
+  --icon-color-primary: var(--recolor);
+  color: var(--recolor);
+  fill: var(--recolor);
+}
+
+[data-xkit-themed=hamburger--time] *,
+[data-xkit-themed=hamburger--time] #quick-reblog,
+[data-xkit-themed=hamburger--time] #quick-reblog button,
+[data-xkit-themed=hamburger--time] .accesskit-visible-alt-text * {
+  --recolor: lightgrey;
+  --icon-color-primary: var(--recolor);
+  color: var(--recolor);
+  fill: var(--recolor);
+}
+
+[data-xkit-themed=thelunaticghost] *,
+[data-xkit-themed=thelunaticghost] #quick-reblog,
+[data-xkit-themed=thelunaticghost] #quick-reblog button,
+[data-xkit-themed=thelunaticghost] .accesskit-visible-alt-text * {
+  --recolor: lightgrey;
+  --icon-color-primary: var(--recolor);
+  color: var(--recolor);
+  fill: var(--recolor);
+}
+
+[data-xkit-themed=lyrebirdswrites] *,
+[data-xkit-themed=lyrebirdswrites] #quick-reblog,
+[data-xkit-themed=lyrebirdswrites] #quick-reblog button,
+[data-xkit-themed=lyrebirdswrites] .accesskit-visible-alt-text * {
+  --recolor: #700E56;
+  --icon-color-primary: var(--recolor);
+  color: var(--recolor);
+  fill: var(--recolor);
+}
+
+[data-xkit-themed=shijas] *,
+[data-xkit-themed=shijas] #quick-reblog,
+[data-xkit-themed=shijas] #quick-reblog button,
+[data-xkit-themed=shijas] .accesskit-visible-alt-text * {
+  --recolor: #7d6544;
+  --icon-color-primary: var(--recolor);
+  color: var(--recolor);
+  fill: var(--recolor);
+}
+
+[data-xkit-themed=yume-fanfare] *,
+[data-xkit-themed=yume-fanfare] #quick-reblog,
+[data-xkit-themed=yume-fanfare] #quick-reblog button,
+[data-xkit-themed=yume-fanfare] .accesskit-visible-alt-text * {
+  --recolor: #da3d6c;
+  --icon-color-primary: var(--recolor);
+  color: var(--recolor);
+  fill: var(--recolor);
+}
+
+[data-xkit-themed=cece-0708] *,
+[data-xkit-themed=cece-0708] #quick-reblog,
+[data-xkit-themed=cece-0708] #quick-reblog button,
+[data-xkit-themed=cece-0708] .accesskit-visible-alt-text * {
+  --recolor: #d5585b;
+  --icon-color-primary: var(--recolor);
+  color: var(--recolor);
+  fill: var(--recolor);
+}
+
+[data-xkit-themed=bestatter] *,
+[data-xkit-themed=bestatter] #quick-reblog,
+[data-xkit-themed=bestatter] #quick-reblog button,
+[data-xkit-themed=bestatter] .accesskit-visible-alt-text * {
+  --recolor: black;
+  --icon-color-primary: var(--recolor);
+  color: var(--recolor);
+  fill: var(--recolor);
+}
+
+[data-xkit-themed=pro-skater-roxas] *,
+[data-xkit-themed=pro-skater-roxas] #quick-reblog,
+[data-xkit-themed=pro-skater-roxas] #quick-reblog button,
+[data-xkit-themed=pro-skater-roxas] .accesskit-visible-alt-text * {
+  --recolor: #276770;
+  --icon-color-primary: var(--recolor);
+  color: var(--recolor);
+  fill: var(--recolor);
+}
+
+[data-xkit-themed=fallenstream] *,
+[data-xkit-themed=fallenstream] #quick-reblog,
+[data-xkit-themed=fallenstream] #quick-reblog button,
+[data-xkit-themed=fallenstream] .accesskit-visible-alt-text * {
+  --recolor: black;
+  --icon-color-primary: var(--recolor);
+  color: var(--recolor);
+  fill: var(--recolor);
+}/*# sourceMappingURL=dashboard-recolor-tweaks.css.map */

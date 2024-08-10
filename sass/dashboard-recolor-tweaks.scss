@@ -1,0 +1,36 @@
+/* ==UserStyle==
+@name           dashboard recolor tweaks
+@namespace      https://sincerelyandyourstruly.neocities.org
+@version        1.0.0
+@description    dashboard recolor tweaks For Me Specifically
+@author         Me
+==/UserStyle== */
+
+@use "sass:string";
+
+:root {
+	--recolor: black;
+}
+
+@mixin user($username, $color: black) {
+	[data-xkit-themed=#{string.quote($username)}] *,
+	[data-xkit-themed=#{string.quote($username)}] #quick-reblog,
+	[data-xkit-themed=#{string.quote($username)}] #quick-reblog button,
+	[data-xkit-themed=#{string.quote($username)}] .accesskit-visible-alt-text * {
+		--recolor: #{$color};
+		--icon-color-primary: var(--recolor);
+		color: var(--recolor);
+		fill: var(--recolor);
+	}
+}
+
+@include user("laaxrun", white);
+@include user("hamburger--time", lightgrey);
+@include user("thelunaticghost", lightgrey);
+@include user("lyrebirdswrites", #700E56);
+@include user("shijas", #7d6544);
+@include user("yume-fanfare", #da3d6c);
+@include user("cece-0708", #d5585b);
+@include user("bestatter");
+@include user("pro-skater-roxas", #276770);
+@include user("fallenstream");
