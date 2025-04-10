@@ -1,0 +1,119 @@
+* {
+	min-width: 0px;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+body {
+	min-width: 0px;
+}
+
+.maxwidth {
+	min-width: 0px;
+	width: max-content;
+}
+
+table {
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 100%;
+	width: max-content;
+
+	thead,
+	tbody,
+	tr,
+	th,
+	td {
+		display: block;
+		max-width: 100%;
+		padding: 0;
+		margin: 0;
+	}
+}
+
+#zmenu {
+	table {
+
+		thead,
+		tbody,
+		tr,
+		th,
+		td {
+			display: flex;
+			flex-wrap: wrap;
+			margin: auto;
+		}
+	}
+}
+
+#content_wrapper_inner {
+	display: flex;
+	flex-wrap: wrap;
+
+	table {
+		display: flex;
+
+		tbody tr {
+			&:nth-child(2) {
+				display: flex;
+
+				>td {
+					&:first-child {
+						width: clamp(12em, 350px, 400px);
+					}
+				}
+			}
+		}
+	}
+
+	div:has(> select) {
+		display: grid;
+		width: 100%;
+		grid-template-columns: 1fr 8fr;
+
+		b {
+			margin: auto;
+			margin-left: 1ch;
+		}
+
+		select {
+			align-self: flex-end;
+			margin: 2px 0;
+		}
+	}
+}
+
+#rangeButton-label {
+	~ div:has(#startFic, #endFic) {
+	  display: none;
+	}
+	&:has(:checked) {
+	  ~ div:has(#startFic, #endFic) {
+		display: grid;
+	  }
+	  ~ div:has(#soloFic) {
+		display: none;
+	  }
+	}
+  }
+
+@media only screen and (max-width: 850px) {
+	#content_wrapper_inner>table {
+		>tbody>tr {
+			&:nth-child(2) {
+				flex-wrap: wrap;
+
+				>td {
+					&:first-child {
+						width: 100%;
+						order: 2; // put it at the end
+
+						ul {
+							width: 100%;
+						}
+					}
+				}
+			}
+		}
+	}
+}
