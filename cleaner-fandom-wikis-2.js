@@ -16,7 +16,27 @@
 // ==/UserScript==
 
 // goes with the stylesheet i made in stylus: https://raw.githubusercontent.com/XiaoBaiXueHua/misc-userscripts/main/cleaner-fandom-wikis-1.css, which was in turn based off a different cleaner fandom wikis script
+// var moved = false;
+const interval = setInterval(() => {
+	// if (!moved) {
+	let move = document.querySelector(`.search-container:has(input)`);
+	try {
+		// var move = document.querySelector(`.search-app__input.search-app__input--focused`);
+		// const move = document.querySelector(`.search-container`);
+		console.log(`move: `, move);
+		document.querySelector("ul.wds-tabs").appendChild(move); // moves the search bar group elsewhere
+		// moved = true;
+		document.querySelector(`#global-top-navigation`).setAttribute(`style`, `display: none!important;`); // hide it this way or else i think it can't find the search bar to move it around
+	} catch (e) {
+		if (!move) {
+			console.warn(e);
+		} else {
+			console.error(e);
+		}
 
+	}
+	// }
+}, 1000);
 const trackers = document.querySelectorAll("[data-tracking]");
 for (const attr of trackers) {
 	attr.removeAttribute("data-tracking");
@@ -46,6 +66,17 @@ const hidey = ["script", `iframe:not([src*="youtube"])`, "#mixed-content-footer"
 for (const e of hidey) {
 	hides(e);
 }
-const move = document.querySelector(".fandom-community-header__top-container div.wiki-tools.wds-button-group");
-console.log(move);
-document.querySelector("ul.wds-tabs").appendChild(move); // moves the search bar group elsewhere
+
+
+setTimeout(() => {
+	clearInterval(interval);
+	// if (!moved) {
+	// console.log(`unable to move the search bar in time.`);
+	// }
+}, 10000); // and if it can't do it in ten seconds, then just cancel it
+// const move = document.querySelector(".fandom-community-header__top-container div.wiki-tools.wds-button-group");
+// setTimeout(() => {
+// 	const move = document.querySelector(`.search-app__input.search-app__input--focused`);
+// 	console.log(move);
+// 	document.querySelector("ul.wds-tabs").appendChild(move); // moves the search bar group elsewhere
+// }, 1500); // wait 1.5s

@@ -5,10 +5,9 @@
 @description    cleans up the fandom wiki pages by a lot. use in conjunction with https://greasyfork.org/users/797186
 @author         小白雪花
 ==/UserStyle== */
-
-/* goes along with cleaner fandom wikis script: https://raw.githubusercontent.com/XiaoBaiXueHua/misc-userscripts/main/cleaner-fandom-wikis-2.js */
 @-moz-document domain(fandom.com) {
 
+	/* goes along with cleaner fandom wikis script: https://raw.githubusercontent.com/XiaoBaiXueHua/misc-userscripts/main/cleaner-fandom-wikis-2.js */
 	script,
 	iframe:not([src*="youtube"]),
 	#mixed-content-footer,
@@ -25,8 +24,6 @@
 	.top-leaderboard,
 	.is-loading,
 	.page__right-rail,
-	.search-modal::before,
-	form[class^="SearchInput-module_form__"] .wds-icon,
 	.notifications-placeholder,
 	.top-ads-container,
 	.instant-suggestion,
@@ -34,12 +31,17 @@
 	#global-register-link,
 	.global-registration-buttons,
 	[async],
-	[sandbox] {
+	[sandbox],
+	/* #global-top-navigation:not(:has(.search-container input)), */
+	/*  #global-top-navigation, */
+	#age-gate {
 		display: none !important;
+		height: 0;
 	}
 
 	.fandom-community-header {
 		display: block;
+		position: relative;
 	}
 
 	.main-container {
@@ -47,6 +49,7 @@
 		width: 100%;
 		max-width: 100% !important;
 		margin-left: 0px;
+		padding-top: 0;
 	}
 
 	.search-modal {
@@ -117,6 +120,7 @@
 	div.wiki-tools.wds-button-group {
 		position: absolute;
 		right: 1vw;
+		bottom: 0.25em;
 	}
 
 	.page-counter {
@@ -124,5 +128,72 @@
 		gap: 0.5em;
 		align-items: baseline;
 		color: var(--theme-page-text-color);
+	}
+
+	.fandom-community-header__background.cover {
+		top: -3em;
+	}
+
+	.resizable-container {
+		top: -3em;
+	}
+
+	.fandom-community-header .fandom-community-header__community-name,
+	.fandom-community-header .wds-tabs__tab-label.first-level-item {
+		text-shadow: 2px 1px 2px var(--theme-accent-label-color);
+	}
+
+	.search-modal {
+		position: absolute;
+		top: 4.5em;
+		right: 15%;
+		z-index: 99;
+	}
+
+	.search-modal__content {
+		position: relative;
+
+		input {
+			padding: 5px 1em;
+		}
+	}
+
+	.search-seeding {
+		li {
+			margin: 5px 1em;
+
+			>a {
+				width: 100%;
+			}
+		}
+
+		p {
+			display: none;
+		}
+	}
+
+	.SearchResults-module_searchResultRedirect__16ND6 {
+		align-self: flex-end;
+		max-width: 45%;
+		margin-left: auto;
+	}
+
+	.talent-table-toc,
+	.constellation-table-toc,
+	.fandom-table .fixed-header,
+	.skin-fandomdesktop .fandom-table.jquery-tablesorter th.headerSort::after {
+		position: static;
+	}
+
+	.search-app__suggestion {
+		font-size: 1em;
+		font-weight: normal;
+		margin: 0;
+		padding: 0.25em;
+	}
+
+	ul.search-app__suggestions-list:nth-of-type(2),
+	.search-app__suggestions-box header {
+		display: none;
 	}
 }
