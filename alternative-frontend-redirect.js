@@ -1,7 +1,8 @@
 // ==UserScript==
 // @name		Redirect to Alternative Frontends
 // @namespace	https://sincerelyandyourstruly.neocities.org
-// @version		1.1.3
+// @version		1.1.4
+// @history		1.1.4 - added redirect for fandom.com wikis
 // @history		1.1 - added redirects for instagram n tiktok
 // @history		1.0 - reddit, imgur, and twt redirects
 // @description	Automatically redirect various socmed links to alternative front ends that DON'T make you log into them. Because fuck them, that's why. Including: Reddig to RedLib, Imgur to Rimgo, Twitter to Nitter
@@ -11,7 +12,7 @@
 // @match		https://twitter.com/**
 // @match		https://x.com/**
 // @match		https://www.instagram.com/**
-// @match		https://www.tiktok.com/**
+// @match		https://*.fandom.com/**
 // @icon		https://www.google.com/s2/favicons?sz=64&domain=catsarch.com
 // @downloadURL	https://raw.githubusercontent.com/XiaoBaiXueHua/misc-userscripts/main/alternative-frontend-redirect.js
 // @updateURL	https://raw.githubusercontent.com/XiaoBaiXueHua/misc-userscripts/main/alternative-frontend-redirect.js
@@ -38,19 +39,23 @@
 	} else if (newURL.search("imgur") >= 0) { // imgur
 		console.log("origin: imgur");
 		newURL = newURL.replace(/w*\.?imgur/i, "rimgo.catsarch");
-	} else if (newURL.search(/twitter|x.com/) >= 0) { // twt --> nitter on poast
+	} else if (newURL.search(/twitter|x.com/i) >= 0) { // twt --> nitter on poast
 		console.log("origin: twt");
 		newURL = newURL.replace(/(twitter|\bx\b).com/i, "nitter.poast.org");
-	} else if (newURL.search(/tiktok\.com/) >= 0) {// tiktok --> proxitok
+	} else if (newURL.search(/tiktok\.com/i) >= 0) {// tiktok --> proxitok
 		console.log(`origin: tik tok; host: ${url.hostname}`);
 		newURL = `https://proxitok.pabloferreiro.es${url.pathname}`;
-	} else if (newURL.search("instagram" >= 0)) { // instagram --> pixwox, now piokok
+	} else if (newURL.search(/fandom\.com/i) >= 0) { // fandom wiki --> breezewiki on catsarch
+		console.log(`origin: fandom.com wiki; host: ${url.hostname}`);
+		const subwiki = url.hostname.match(/.*?(?=\.)/)[0]; // get the specific subwiki
+		newURL = `https://breezewiki.catsarch.com/${subwiki}${url.pathname}`;
+	} else if (newURL.search(/instagram/i >= 0)) { // instagram --> pixwox, now piokok
 		// 
-		console.log(`origin: instagram: instagram; host: ${url.hostname}`);
+		console.log(`origin: instagram; host: ${url.hostname}`);
 		const pathname = url.pathname;
 		if (pathname.search(/\/(reel|p)\//) >= 0) {
 			// if it's a reel or a regular post, then just do /post/[reel url or whatever]
-			newURL = `https://www.piokok.com/post/${pathname.replace(/\/reel\//, "")}`; // this will automatically redirect from the keysmash auto-generated url to the piokok
+			newURL = `https://www.piokok.com/post/${pathname.replace(/\/(reel|p)\//, "")}`; // this will automatically redirect from the keysmash auto-generated url to the piokok
 		} else if (url.pathname.toString().search("login") >= 0) {
 			// if we're at a login wall
 			const s = url.search.toString(); // gets the search thing as a string
@@ -61,6 +66,6 @@
 			newURL = newURL.replace(/instagram.com/i, "piokok.com/profile"); // the last option is currently an assumption that we Don't run into a login wall and are just sent to look at a profile
 		}
 	}
-
+	console.log(`new location: ${newURL}`);
 	window.location = new URL(newURL);
 })();

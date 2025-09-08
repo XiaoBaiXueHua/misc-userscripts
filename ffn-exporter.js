@@ -53,7 +53,7 @@ class UI {
 		expyButton.addEventListener("click", UI.execute);
 
 		// and then also probably a csv
-		const csv = dom.pp("Export Legacy Story Stats", "button", null, { id: "legacyExport" });
+		const csv = dom.pp("Export Legacy Story Stats as CSV", "button", null, { id: "legacyExport" });
 		csv.addEventListener("click", async () => {
 			// const a = new Array();
 			getPage("/stats/story.php", "").then((txt) => {
@@ -70,6 +70,10 @@ class UI {
 				// return a;
 				fic.download(b, `Legacy Story Stats ${(new Date()).toJSON()}.csv`, "text/csv")
 			})
+		});
+		// const debugsie = dom.pp("ugh debugging :/", "button");
+		debugsie.addEventListener(`click`, () => {
+			console.log(`stats: ${UI.stats}, chDates: ${UI.chDates}, range: ${UI.range}, rangeVals: ${UI.rangeVals}, soloVal: ${UI.soloVal}`);
 		})
 
 		document.querySelector(`td[valign="top"]:has(#story-list) hr`).insertAdjacentElement("beforebegin", dom.pp([details, expyButton, csv], "div")); // appends the options to the thing
@@ -346,44 +350,47 @@ class fic {
 
 	getStats() { // this will also be used to figure out the publishing date of chapters, so later there will be if/else statements in here
 		const pub = this.published;
-		
 		var m = pub.month - 1, y = pub.year;
 		for (var i = 0; i <= pub.monthsSince; i++) {
 			// uhh and now we have to. figure out
 			// console.log(`i: ${i}\tmonth: ${m % 12 + 1}\tyear:${y}`);
 			const pm = m % 12 + 1, py = y, int = (i * interval * 2) + (this.pgs * interval); // also account for the stats fetching
-			function twee() {
+			// function twee() {
+			setTimeout(() => {
 				console.log(`fetching "${this.title}" stats/dates for ${pm}/${py}`);
 				const s = new stats(pm, py, this.id, this.releaseDatesFound);
-				if (UI.stats) {
-					this.stats.push(s.statBlock);
-				}
-				if (UI.chDates && this.chapters > 1) {
-					console.log(`chReleaseDates: ${this.chReleaseDates.length}; releaseDatesFound: ${this.releaseDatesFound}; chapters: ${this.chapters}`);
-					if ((this.releaseDatesFound == this.chapters) && !UI.stats) {
-						// only do this if we've got all the chapters n don't want the stats
-						console.log(`hi we have found the exit point`);
-						clearTimeout(this);
-					} else {
-						setTimeout(() => {
-							console.log(s.publishedInPeriod);
-							this.releaseDatesFound += s.publishedInPeriod;
-						}, 500); // give it a half second to process it
-					}
-					
-					// then we do some stuffs. might involve yet more page fetches
-				}
-			}
+				// if (UI.stats) {
+				this.stats.push(s.statBlock);
+				// }
 
-			let tmo = setTimeout(() => {
-				
 			}, int);
-			
 			// increment the month and year
 			m++;
 			if (m % 12 == 0) {
 				y++;
 			}
+		}
+	}
+
+	getChDates() {
+		// yeah let's just. make this its own function tbh.
+		var k= 0; // wherein k is the number of chapters available if also doing by-chapter fetches as well
+		// by-chapter fetches should probably be performed After everything else
+		// but anyway, chapter dates alone should be relatively easy since you only have to search btwn the designated time periods of "published" and "updated"
+		if (UI.chDates && this.chapters > 1) {
+			console.log(`chReleaseDates: ${this.chReleaseDates.length}; releaseDatesFound: ${this.releaseDatesFound}; chapters: ${this.chapters}`);
+			if ((this.releaseDatesFound == this.chapters) && !UI.stats) {
+				// only do this if we've got all the chapters n don't want the stats
+				console.log(`hi we have found the exit point`);
+				clearTimeout(this);
+			} else {
+				setTimeout(() => {
+					console.log(s.publishedInPeriod);
+					this.releaseDatesFound += s.publishedInPeriod;
+				}, 500); // give it a half second to process it
+			}
+
+			// then we do some stuffs. might involve yet more page fetches
 		}
 	}
 
@@ -468,8 +475,11 @@ function savey(index) {
 		// console.log(`"${f.title}" should have ${revPgs} pages of reviews.`);
 		getFic(f);
 		f.getReviews();
-		if (UI.stats || UI.chDates) {
+		if (UI.stats) {
 			f.getStats(); // save if the option is selected
+		}
+		if (UI.chDates) {
+			f.getChDates();
 		}
 		setTimeout(() => {
 			const str = JSON.stringify(f);
